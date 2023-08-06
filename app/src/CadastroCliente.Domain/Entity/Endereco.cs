@@ -2,27 +2,18 @@
 
 public class Endereco : Entity
 {
-    public Guid ClienteId { get; private set; }
-    public string Numero { get; private set; }
+    public Guid ClienteId { get; set; }
+    public required string Numero { get; set; }
 
-    public string Bairro { get; private set; }
+    public required string Bairro { get; set; }
 
-    public string Cidade { get; private set; }
+    public required string Cidade { get; set; }
 
-    public string Estado { get; private set; }
+    public required string Estado { get; set; }
 
-    public string Cep { get; private set; }
-
-    public Endereco(string numero, string bairro, string cidade, string estado, string cep, Guid clienteId)
-    {
-
-        Numero = numero;
-        Bairro = bairro;
-        Cidade = cidade;
-        Estado = estado;
-        Cep = cep;
-        ClienteId = clienteId;
-    }
+    public required string Cep { get; set; }
+    
+    public required Cliente Cliente { get; set; }
 }
 
 

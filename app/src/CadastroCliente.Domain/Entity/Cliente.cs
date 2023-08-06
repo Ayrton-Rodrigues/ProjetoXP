@@ -3,23 +3,14 @@
 public class Cliente : Entity
 {
 
- 
-    public string Nome { get; private set; }
-    
-    public string Email { get; private set; }
-    
-    public DateTime DataCadastro { get; private set; }
+    public required string Nome { get; set; }
 
-    public Endereco Endereco { get; private set; }
+    public required string Email { get; set; }
 
-    public Cliente(string nome, string email,DateTime dataCadastro , Endereco endereco)
-    {
-        Nome = nome;
-        Email = email;
-        DataCadastro = dataCadastro;
-        Endereco = endereco;
-    }
+    public DateTime DataCadastro { get; set; }
+    public DateTime? DataAtualizacao { get; set; }
     
+    public  Endereco? Endereco { get; set; }
 }
 
 
