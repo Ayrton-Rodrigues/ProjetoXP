@@ -1,4 +1,6 @@
 using CadastroCliente.Api.Configuration;
+using CadastroCliente.Data;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,6 +31,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.MigrationInitialisation();
+
+
 
 app.UseHttpsRedirection();
 

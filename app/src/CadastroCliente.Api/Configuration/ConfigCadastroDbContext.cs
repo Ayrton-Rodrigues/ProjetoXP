@@ -11,6 +11,7 @@ namespace CadastroCliente.Api.Configuration
             services.AddDbContext<CadastroDbContext>(options =>
             {
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+                
             });
 
             return services;
