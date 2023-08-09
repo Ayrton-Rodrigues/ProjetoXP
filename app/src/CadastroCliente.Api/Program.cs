@@ -1,4 +1,6 @@
 using CadastroCliente.Api.Configuration;
+using CadastroCliente.Data;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,13 +15,7 @@ var configuration = new ConfigurationBuilder()
 
 builder.Services.AddConfigDbContext(configuration);
 
-builder.Services.ResolveDependencies();
-
-
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.ApiConfig();
 
 var app = builder.Build();
 
@@ -29,6 +25,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.MigrationInitialisation();
+
+
 
 app.UseHttpsRedirection();
 
