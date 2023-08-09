@@ -4,7 +4,6 @@ EXPOSE 443
 WORKDIR /app
 
 COPY . /app
-COPY . ./sql
 RUN dotnet restore ./CadastroCliente.Api/CadastroCliente.Api.csproj
 RUN dotnet publish ./CadastroCliente.Api/CadastroCliente.Api.csproj -c Release -o /app/out
 
