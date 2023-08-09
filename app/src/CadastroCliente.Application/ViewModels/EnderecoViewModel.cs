@@ -31,7 +31,7 @@ namespace CadastroCliente.Application.ViewModels
         [StringLength(50, ErrorMessage = "O campo {0} precisa conter entre {2} e {1} caracter", MinimumLength = 2)]
         public required string Estado { get; set; }
 
-        public Guid ClienteId { get; set; }
+        public Guid? ClienteId { get; set; }
 
     }
 }
