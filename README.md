@@ -11,7 +11,7 @@ Para criar o ambiente, podemos realizar os seguintes passos
 
 
 ### Disponibilizando backend e banco de dados no docker
-Após realizar o clone do projeto, siga até o diretório /src onde se encontra o Dockerfile e o arquivo Docker-Compose-yml e rode o seguinte comando em seu terminal:  
+Após realizar o clone do projeto, siga até o diretório /src onde se encontra o Dockerfile e o arquivo Docker-Compose.yml e rode o seguinte comando em seu terminal:  
 - ` docker-compose up --build` 
 
 ### E agora?
@@ -20,4 +20,20 @@ você terá acesso a documentação da api via swagger no endereço: http://loca
 
 ![Texto Alternativo](./imagens/api_swagger.png)
 
+
+### Exemplo de objeto em json para ser salvo
+
+```json
+{
+  "nome": "Joao Paulo",
+  "email": "joao.paulo@email.com",
+  "dataCadastro": "2023-08-08T14:35:08.537Z",
+  "enderecoViewModel": {
+    "numero": "545",
+    "cep": "12345678",
+    "bairro": "Centro",
+    "cidade": "São Paulo",
+    "estado": "SP"
+  }
+}
 
