@@ -9,7 +9,7 @@ namespace CadastroCliente.Api.Controller
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ClienteController : ControllerBase
+    public class ClienteController : MainController
     {
 
         private readonly IClienteService _clienteService;
@@ -24,91 +24,63 @@ namespace CadastroCliente.Api.Controller
      
         public async Task<IActionResult> ObterTodos()
         {
-            try
-            {
-                var result = await _clienteService.ObterTodosClientes();
-                
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+    
+            var clientes = await _clienteService.ObterTodosClientes();
+
+            return CustomResponse(clientes);       
         }
 
         [HttpGet("Obter-cliente-por-id/{id:guid}")]
         public async Task<IActionResult> ObterClientePorId(Guid id)
         {
-            try
-            {
-                var cliente = await _clienteService.ObterClientePorId(id);
+          
+            var cliente = await _clienteService.ObterClientePorId(id);
 
-                if (cliente == null) return NotFound();
+            if (cliente == null) return NotFound();
 
-                return Ok(
-                    new { 
-                    success = true,
-                    data = cliente
-                    });
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            return CustomResponse(cliente);
+        
         }
-
 
        
         [HttpPost("Adicionar-cliente")]
             
         public async Task<IActionResult> AdicionarCliente(ClienteViewModel cliente)
-        {
-            try
-            {
-                var resultado = await _clienteService.Adicionar(cliente);
-                return Ok(resultado);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+        {           
+
+                if (!ModelState.IsValid) return CustomResponse(ModelState);
+                
+                await _clienteService.Adicionar(cliente);                
+                
+                return CustomResponse(cliente); 
+          
         }
 
         [HttpPut("Atualizar-cliente/{id:guid}")]        
         public async Task<IActionResult> AtualizarCliente(Guid id, ClienteViewModel cliente)
         {
-            try
-            {
-                if (id != cliente.Id) return NotFound(cliente);
+            
+            if (id != cliente.Id) return CustomResponse(cliente);
+            
+            if (!ModelState.IsValid) CustomResponse(ModelState);
 
-                var resultado = await _clienteService.Atualizar(cliente);
+            await _clienteService.Atualizar(cliente);
                 
-                return Ok(resultado);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            return CustomResponse(cliente);
+
         }
 
         
         [HttpDelete("{id:guid}")]
         public async Task<IActionResult> Delete(Guid id)
-        {
-            try
-            {
+        {   
                 var cliente = await _clienteService.ObterClientePorId(id);
 
                 if (cliente == null) return NotFound();
 
-                var resultado = await _clienteService.Remover(cliente);
+                await _clienteService.Remover(cliente);
                 
-                return Ok(resultado);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+                return CustomResponse(cliente);       
         }
     }
 }
