@@ -18,8 +18,7 @@ namespace CadastroCliente.Data
             {
                 var serviceDb = serviceScope.ServiceProvider
                                  .GetService<CadastroDbContext>();
-
-                serviceDb?.Database.EnsureDeleted();
+               
                 serviceDb?.Database.Migrate();
 
 

@@ -15,13 +15,7 @@ var configuration = new ConfigurationBuilder()
 
 builder.Services.AddConfigDbContext(configuration);
 
-builder.Services.ResolveDependencies();
-
-
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.ApiConfig();
 
 var app = builder.Build();
 
